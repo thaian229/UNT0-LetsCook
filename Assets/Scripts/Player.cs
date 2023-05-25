@@ -17,7 +17,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 10f;
-    [SerializeField] private GameInput gameInput;
     [SerializeField] private float playHeight = 2f;
     [SerializeField] private float playerRadius = .7f;
     [SerializeField] private LayerMask countersLayerMask;
@@ -39,8 +38,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void Start()
     {
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
-        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+        GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+        GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -76,7 +75,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandlerMovement()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         float moveDistance = Time.deltaTime * moveSpeed;
@@ -116,7 +115,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandlerInteractions()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero)
