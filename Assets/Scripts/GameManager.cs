@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnpaused;
     public event EventHandler OnStateChanged;
 
     private enum State
@@ -109,17 +111,25 @@ public class GameManager : MonoBehaviour
         return gameplayTimer / gameplayTimerMax;
     }
 
-    private void TogglePauseGame()
+    public bool IsGamePaused()
     {
+        return isGamePaused;
+    }
+
+    public void TogglePauseGame()
+    {
+
         if (isGamePaused)
         {
             Time.timeScale = 1f;
             isGamePaused = false;
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             Time.timeScale = 0f;
             isGamePaused = true;
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
         }
     }
 }

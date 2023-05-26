@@ -20,6 +20,9 @@ public class MainMenuUI : MonoBehaviour
         {
             Application.Quit();
         });
+
+        // Reset in case game quit on Paused
+        Time.timeScale = 1.0f;
     }
 
 
