@@ -30,8 +30,6 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private Button interactAltButton;
     [SerializeField] private Button pauseButton;
 
-    [SerializeField] private Transform pressToRebindTransform;
-
 
     private void Awake()
     {
@@ -104,12 +102,12 @@ public class OptionsUI : MonoBehaviour
 
     private void ShowPressToRebindKey()
     {
-        pressToRebindTransform.gameObject.SetActive(true);
+        // pressToRebindTransform.gameObject.SetActive(true);
     }
 
     private void HidePressToRebindKey()
     {
-        pressToRebindTransform.gameObject.SetActive(false);
+        // pressToRebindTransform.gameObject.SetActive(false);
     }
 
     private void RebindBinding(GameInput.Binding binding)
